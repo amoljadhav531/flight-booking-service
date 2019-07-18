@@ -117,11 +117,6 @@ public class SearchFlightServiceTest {
 	}
 	
 	@Test(expected = ResourceNotFoundException.class)
-	public void testSearchFlightAllValuesNullThrowException() {
-		searchFlightService.searchFlight(searchFlightDTOForExcpetion);
-	}
-	
-	@Test(expected = ResourceNotFoundException.class)
 	public void testSearchFlightWrongSortByParam() {
 		searchFlightService.searchFlight(searchFlightWrongSortByException);
 	}

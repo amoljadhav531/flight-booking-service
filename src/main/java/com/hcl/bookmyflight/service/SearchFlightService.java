@@ -18,11 +18,6 @@ public class SearchFlightService {
 	private FlightDetailsRepository searchFlightRepository;
 	 	
 	public List<FlightDetails> searchFlight(FlightDetailsDTO searchFlightDTO) {
-	System.out.println("111");
-		if(searchFlightDTO.getDate().equals("")||searchFlightDTO.getDestination().equals("")||searchFlightDTO.getSortParam().equals("")||searchFlightDTO.getSource().equals("")) {
-			System.out.println("2323");
-			throw new ResourceNotFoundException("Cannot pass blank values to the source, destination, date or sortparam", "", "");
-		}
 		
 		FlightDetails searchFlightEntity = new FlightDetails();
 		searchFlightEntity.setDate(searchFlightDTO.getDate());
