@@ -19,19 +19,14 @@ public class SearchFlightService {
 	 	
 	public List<FlightDetails> searchFlight(FlightDetailsDTO searchFlightDTO) {
 		
-		FlightDetails searchFlightEntity = new FlightDetails();
-		searchFlightEntity.setDate(searchFlightDTO.getDate());
-		searchFlightEntity.setDestination(searchFlightDTO.getDestination());
-		searchFlightEntity.setSource(searchFlightDTO.getSource());
-		
 		if(searchFlightDTO.getSortParam().equalsIgnoreCase("price")) {
-			return searchFlightRepository.findBySourceAndDestinationAndDateOrderByPriceAsc(searchFlightEntity.getSource(), searchFlightEntity.getDestination(), searchFlightEntity.getDate());
+			return searchFlightRepository.findBySourceAndDestinationAndDateOrderByPriceAsc(searchFlightDTO.getSource(), searchFlightDTO.getDestination(), searchFlightDTO.getDate());
 		}	
 		else if(searchFlightDTO.getSortParam().equalsIgnoreCase("timeDuration")) {
-			return searchFlightRepository.findBySourceAndDestinationAndDateOrderByTimeDurationAsc(searchFlightEntity.getSource(), searchFlightEntity.getDestination(), searchFlightEntity.getDate());
+			return searchFlightRepository.findBySourceAndDestinationAndDateOrderByTimeDurationAsc(searchFlightDTO.getSource(), searchFlightDTO.getDestination(), searchFlightDTO.getDate());
 		}
 		else if(searchFlightDTO.getSortParam().equalsIgnoreCase("arrivalTime")) {
-			return searchFlightRepository.findBySourceAndDestinationAndDateOrderByArrivalTimeAsc(searchFlightEntity.getSource(), searchFlightEntity.getDestination(), searchFlightEntity.getDate());
+			return searchFlightRepository.findBySourceAndDestinationAndDateOrderByArrivalTimeAsc(searchFlightDTO.getSource(), searchFlightDTO.getDestination(), searchFlightDTO.getDate());
 		}
 		else {
 			throw new ResourceNotFoundException("Sort Parameter is not specified properly. Please specify out of these <price, timeDuration, arrivalTime>", "", searchFlightDTO.getSortParam());
