@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.bookmyflight.dto.BookingDetailsDto;
@@ -64,13 +65,13 @@ public class FlightBookingServiceImplTest {
 
 	}
 
-	@Ignore
+	@Test
 	public void testBookFlightSuccess() throws BookMyFlightException {
 		when(flightDetailsRepository.findById(bookingDetailsDto.getFlightId())).thenReturn(flightDetailsOptional);
 		when(userRepository.findById(bookingDetailsDto.getBookedBy())).thenReturn(userOptional);
 		when(flightDetailsRepository.save(flightdetails)).thenReturn(flightdetails);
-		when(bookingDetailsRepository.save(bookingDetails)).thenReturn(bookingDetails);
-		assertEquals("", flightBookingServiceImpl.bookFlight(bookingDetailsDto));
+		when(bookingDetailsRepository.save(Mockito.any())).thenReturn(bookingDetails);
+		assertEquals("123", flightBookingServiceImpl.bookFlight(bookingDetailsDto));
 	}
 
 	private FlightDetails prepareFlightDetails() {
@@ -102,7 +103,8 @@ public class FlightBookingServiceImplTest {
 		bookingDetails.setBookingDateTime(LocalDateTime.now());
 		bookingDetails.setFlightDetails(flightdetails);
 		bookingDetails.setTotalAmount(0.0);
-		
+		bookingDetails.setBookingId(Long.valueOf(123));
+
 		return bookingDetails;
 	}
 
