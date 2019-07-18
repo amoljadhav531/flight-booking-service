@@ -1,4 +1,4 @@
-package com.hcl.flightbooker.config;
+package com.hcl.bookmyflight.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

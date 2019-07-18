@@ -1,4 +1,4 @@
-package com.hcl.flightbooker;
+package com.hcl.bookmyflight;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class FlightbookerApplicationTests {
+public class BookMyFlightApplicationTests {
 
 	@Test
 	public void contextLoads() {

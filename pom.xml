@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hcl</groupId>
-	<artifactId>flightbooker</artifactId>
+	<artifactId>bookmyflight</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>flightbooker</name>
+	<name>bookmyflight</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

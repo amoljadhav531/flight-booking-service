@@ -1,13 +1,13 @@
-package com.hcl.flightbooker;
+package com.hcl.bookmyflight;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FlightbookerApplication {
+public class BookMyFlightApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FlightbookerApplication.class, args);
+		SpringApplication.run(BookMyFlightApplication.class, args);
 	}
 
 }
