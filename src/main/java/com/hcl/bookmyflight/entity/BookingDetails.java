@@ -88,4 +88,11 @@ public class BookingDetails {
 		this.passengerDetails = passengerDetails;
 	}
 
+	@Override
+	public String toString() {
+		return "BookingDetails [bookingId=" + bookingId + ", bookingDateTime=" + bookingDateTime + ", totalAmount="
+				+ totalAmount + ", flightDetails=" + flightDetails + ", bookedBy=" + bookedBy + ", passengerDetails="
+				+ passengerDetails + "]";
+	}
+
 }

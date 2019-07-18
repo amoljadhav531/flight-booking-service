@@ -2,44 +2,41 @@ package com.hcl.bookmyflight.dto;
 
 import java.util.List;
 
-import com.hcl.bookmyflight.entity.PassengerDetails;
-
 public class BookingDetailsDto {
 
-	private String userName;
+	private int bookedBy;
 
-	private String flightId;
+	private Long flightId;
 
-	private List<PassengerDetails> passengerDetails;
+	private List<PassengerDetailsDto> passengerDetails;
 
-	public String getUserName() {
-		return userName;
+	public int getBookedBy() {
+		return bookedBy;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setBookedBy(int bookedBy) {
+		this.bookedBy = bookedBy;
 	}
 
-	public String getFlightId() {
-		return flightId;
-	}
-
-	public void setFlightId(String flightId) {
-		this.flightId = flightId;
-	}
-
-	public List<PassengerDetails> getPassengerDetails() {
+	public List<PassengerDetailsDto> getPassengerDetails() {
 		return passengerDetails;
 	}
 
-	public void setPassengerDetails(List<PassengerDetails> passengerDetails) {
+	public void setPassengerDetails(List<PassengerDetailsDto> passengerDetails) {
 		this.passengerDetails = passengerDetails;
+	}
+
+	public Long getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(Long flightId) {
+		this.flightId = flightId;
 	}
 
 	@Override
 	public String toString() {
-		return "BookingDetailsDto [userName=" + userName + ", flightId=" + flightId + ", passengerDetails="
+		return "BookingDetailsDto [bookedBy=" + bookedBy + ", flightId=" + flightId + ", passengerDetails="
 				+ passengerDetails + "]";
 	}
-
 }
