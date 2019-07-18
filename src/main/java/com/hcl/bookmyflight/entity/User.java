@@ -1,46 +1,82 @@
 package com.hcl.bookmyflight.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
 
-	private int userid;
-	private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
+	private int userId;
+
+	@Column(name = "user_name")
+	private String userName;
+
 	private String password;
-	private String mobileno;
-	private String emailid;
-	public int getUserid() {
-		return userid;
+
+	@Column(name = "mobile_No")
+	private String mobileNo;
+
+	@Column(name = "email_id")
+	private String emailId;
+
+	@OneToMany(mappedBy = "bookedBy")
+	private List<BookingDetails> bookingDetails;
+
+	public int getUserId() {
+		return userId;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public String getUsername() {
-		return username;
+
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getMobileno() {
-		return mobileno;
+
+	public String getMobileNo() {
+		return mobileNo;
 	}
-	public void setMobileno(String mobileno) {
-		this.mobileno = mobileno;
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
-	public String getEmailid() {
-		return emailid;
+
+	public String getEmailId() {
+		return emailId;
 	}
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
-	
-	
-	
+
+	public List<BookingDetails> getBookingDetails() {
+		return bookingDetails;
+	}
+
+	public void setBookingDetails(List<BookingDetails> bookingDetails) {
+		this.bookingDetails = bookingDetails;
+	}
+
 }
