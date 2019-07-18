@@ -1,11 +1,14 @@
 package com.hcl.bookmyflight.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hcl.bookmyflight.dto.LoginDto;
 import com.hcl.bookmyflight.entity.User;
 import com.hcl.bookmyflight.repository.UserRepository;
 
+
+@Service
 public class LoginServiceImpl implements LoginServiceInterface {
 
 	@Autowired
