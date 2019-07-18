@@ -1,4 +1,4 @@
-package com.hcl.bookmyflight.LoginServiceTest;
+package com.hcl.bookmyflight.service;
 
 import static org.junit.Assert.assertEquals;
 
