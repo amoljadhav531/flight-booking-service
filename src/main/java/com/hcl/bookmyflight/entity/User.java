@@ -86,4 +86,12 @@ public class User implements Serializable{
 		this.bookingDetails = bookingDetails;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", mobileNo=" + mobileNo
+				+ ", emailId=" + emailId + ", bookingDetails=" + bookingDetails + "]";
+	}
+	
+	
+
 }

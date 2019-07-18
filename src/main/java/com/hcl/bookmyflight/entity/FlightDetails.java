@@ -117,4 +117,13 @@ public class FlightDetails implements Serializable {
 		this.avalaibleSeats = avalaibleSeats;
 	}
 
+	@Override
+	public String toString() {
+		return "FlightDetails [flightId=" + flightId + ", source=" + source + ", destination=" + destination + ", date="
+				+ date + ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", timeDuration="
+				+ timeDuration + ", price=" + price + ", avalaibleSeats=" + avalaibleSeats + "]";
+	}
+	
+	
+
 }
