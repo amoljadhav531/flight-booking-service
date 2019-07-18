@@ -25,10 +25,13 @@ public class FlightDetails {
 
 	private LocalDate date;
 
+	@Column(name= "departure_time")
 	private String departureTime;
 
+	@Column(name= "arrival_time")
 	private String arrivalTime;
 
+	@Column(name= "time_duration")
 	private String timeDuration;
 
 	private double price;
