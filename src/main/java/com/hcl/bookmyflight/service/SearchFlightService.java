@@ -18,6 +18,10 @@ public class SearchFlightService {
 	 	
 	public List<FlightDetails> searchFlight(FlightDetailsDTO searchFlightDTO) {
 	
+		if(searchFlightDTO.getDate().equals("")||searchFlightDTO.getDestination().equals("")||searchFlightDTO.getSortParam().equals("")||searchFlightDTO.getSource().equals("")) {
+			throw new ResourceNotFoundException("Cannot pass blank values to the source, destination, date or sortparam", "", "");
+		}
+		
 		FlightDetails searchFlightEntity = new FlightDetails();
 		searchFlightEntity.setDate(searchFlightDTO.getDate());
 		searchFlightEntity.setDestination(searchFlightDTO.getDestination());
@@ -35,7 +39,6 @@ public class SearchFlightService {
 		else {
 			throw new ResourceNotFoundException("Sort Parameter is not specified properly. Please specify out of these <price, timeDuration, arrivalTime>", "", searchFlightDTO.getSortParam());
 		}
-		
 		
 	}
 
