@@ -1,9 +1,10 @@
 package com.hcl.bookmyflight.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class BookingDetails implements Serializable{
 	private Long bookingId;
 
 	@Column(name = "booking_date_time")
-	private Date bookingDateTime;
+	private LocalDateTime bookingDateTime;
 
 	@Column(name = "total_amount")
 	private Double totalAmount;
@@ -44,7 +45,7 @@ public class BookingDetails implements Serializable{
 	@JoinColumn(name = "bookedBy")
 	private User bookedBy;
 
-	@OneToMany(mappedBy = "bookingDetails")
+	@OneToMany(mappedBy = "bookingDetails", cascade = CascadeType.ALL, orphanRemoval =true)
 	private List<PassengerDetails> passengerDetails;
 
 	public Long getBookingId() {
@@ -55,11 +56,11 @@ public class BookingDetails implements Serializable{
 		this.bookingId = bookingId;
 	}
 
-	public Date getBookingDateTime() {
+	public LocalDateTime getBookingDateTime() {
 		return bookingDateTime;
 	}
 
-	public void setBookingDateTime(Date bookingDateTime) {
+	public void setBookingDateTime(LocalDateTime bookingDateTime) {
 		this.bookingDateTime = bookingDateTime;
 	}
 

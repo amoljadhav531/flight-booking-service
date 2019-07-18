@@ -22,9 +22,9 @@ public class PassengerDetails implements Serializable{
 	private static final long serialVersionUID = 4088343444884333897L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "passenger_id")
-	private int passengerId;
+	private Long passengerId;
 
 	@Column(name = "passenger_name")
 	private String passengerName;
@@ -39,11 +39,11 @@ public class PassengerDetails implements Serializable{
 	@JoinColumn(name = "booking_id")
 	private BookingDetails bookingDetails;
 
-	public int getPassengerId() {
+	public Long getPassengerId() {
 		return passengerId;
 	}
 
-	public void setPassengerId(int passengerId) {
+	public void setPassengerId(Long passengerId) {
 		this.passengerId = passengerId;
 	}
 
