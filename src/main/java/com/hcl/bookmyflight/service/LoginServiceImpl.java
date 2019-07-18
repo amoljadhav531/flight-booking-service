@@ -9,7 +9,7 @@ import com.hcl.bookmyflight.repository.UserRepository;
 
 
 @Service
-public class LoginServiceImpl implements LoginServiceInterface {
+public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private UserRepository userRepository;

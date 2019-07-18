@@ -78,5 +78,13 @@ public class PassengerDetails implements Serializable{
 	public void setBookingDetails(BookingDetails bookingDetails) {
 		this.bookingDetails = bookingDetails;
 	}
+
+	@Override
+	public String toString() {
+		return "PassengerDetails [passengerId=" + passengerId + ", passengerName=" + passengerName + ", passengerAge="
+				+ passengerAge + ", passengerGender=" + passengerGender + ", bookingDetails=" + bookingDetails + "]";
+	}
+	
+	
 	
 }
