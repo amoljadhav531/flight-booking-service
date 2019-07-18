@@ -74,6 +74,19 @@ public class FlightBookingServiceImplTest {
 		assertEquals("123", flightBookingServiceImpl.bookFlight(bookingDetailsDto));
 	}
 
+	@Test(expected = BookMyFlightException.class)
+	public void testBookFlightWhenInvalidUserDetail() throws BookMyFlightException {
+		when(flightDetailsRepository.findById(bookingDetailsDto.getFlightId())).thenReturn(flightDetailsOptional);
+		when(userRepository.findById(bookingDetailsDto.getBookedBy())).thenReturn(Optional.empty());
+		flightBookingServiceImpl.bookFlight(bookingDetailsDto);
+	}
+	
+	@Test(expected = BookMyFlightException.class)
+	public void testBookFlightWhenInvalidFlightDetail() throws BookMyFlightException {
+		when(flightDetailsRepository.findById(bookingDetailsDto.getFlightId())).thenReturn(Optional.empty());
+		flightBookingServiceImpl.bookFlight(bookingDetailsDto);
+	}
+
 	private FlightDetails prepareFlightDetails() {
 		FlightDetails flightDetails = new FlightDetails();
 		flightDetails.setAvalaibleSeats(10);
