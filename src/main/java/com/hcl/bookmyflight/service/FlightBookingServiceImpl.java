@@ -15,6 +15,7 @@ import com.hcl.bookmyflight.entity.BookingDetails;
 import com.hcl.bookmyflight.entity.FlightDetails;
 import com.hcl.bookmyflight.entity.PassengerDetails;
 import com.hcl.bookmyflight.entity.User;
+import com.hcl.bookmyflight.exception.BookMyFlightException;
 import com.hcl.bookmyflight.repository.BookingDetailsRepository;
 import com.hcl.bookmyflight.repository.FlightDetailsRepository;
 import com.hcl.bookmyflight.repository.UserRepository;
@@ -32,12 +33,12 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 	private BookingDetailsRepository bookingDetailsRepository;
 
 	@Override
-	public String bookFlight(BookingDetailsDto bookingDetailsDto) {
+	public String bookFlight(BookingDetailsDto bookingDetailsDto) throws BookMyFlightException {
 		Optional<FlightDetails> flightDetails = flightDetailsRepository.findById(bookingDetailsDto.getFlightId());
 		Optional<User> userDetails = userRepository.findById(bookingDetailsDto.getBookedBy());
 		if (userDetails.isPresent() && flightDetails.isPresent()) {
 			if(flightDetails.get().getAvalaibleSeats() < bookingDetailsDto.getPassengerDetails().size()) {
-				return "Seats Not Available. Please try another flight";
+				throw new BookMyFlightException("Seats Not Available. Please try another flight");
 			}
 			FlightDetails details = flightDetails.get();
 			details.setAvalaibleSeats(details.getAvalaibleSeats() - bookingDetailsDto.getPassengerDetails().size());
@@ -61,7 +62,7 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 			return bookingDetailsRepository.save(bookingDetails).getBookingId().toString();
 
 		}
-		return "Invalid UserId or Flight Id ";
+		throw new BookMyFlightException("Invalid UserId or Flight Id ");
 	}
 
 }
