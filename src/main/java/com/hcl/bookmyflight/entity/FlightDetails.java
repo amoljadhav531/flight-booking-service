@@ -22,10 +22,16 @@ public class FlightDetails {
 
 	private String destination;
 
-	@Column(name = "date_time")
 	private LocalDate date;
-	
-	private String time;
+
+	@Column(name= "departure_time")
+	private String departureTime;
+
+	@Column(name= "arrival_time")
+	private String arrivalTime;
+
+	@Column(name= "time_duration")
+	private String timeDuration;
 
 	private double price;
 
@@ -69,11 +75,28 @@ public class FlightDetails {
 		this.date = date;
 	}
 
-	public String getTime() {
-		return time;
+	public String getDepartureTime() {
+		return departureTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
 	}
+
+	public String getArrivalTime() {
+		return arrivalTime;
+	}
+
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	public String getTimeDuration() {
+		return timeDuration;
+	}
+
+	public void setTimeDuration(String timeDuration) {
+		this.timeDuration = timeDuration;
+	}
+
 }
