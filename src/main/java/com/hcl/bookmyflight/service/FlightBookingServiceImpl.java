@@ -39,8 +39,10 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 			if(flightDetails.get().getAvalaibleSeats() < bookingDetailsDto.getPassengerDetails().size()) {
 				return "Seats Not Available. Please try another flight";
 			}
+			FlightDetails details = flightDetails.get();
+			details.setAvalaibleSeats(details.getAvalaibleSeats() - bookingDetailsDto.getPassengerDetails().size());
 			BookingDetails bookingDetails = new BookingDetails();
-			bookingDetails.setFlightDetails(flightDetails.get());
+			bookingDetails.setFlightDetails(details);
 			bookingDetails.setBookedBy(userDetails.get());
 			bookingDetails.setBookingDateTime(LocalDateTime.now());
 
@@ -55,6 +57,7 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 
 			bookingDetails.setPassengerDetails(passengerDetails);
 			bookingDetails.setTotalAmount(flightDetails.get().getPrice() * passengerDetails.size());
+			flightDetailsRepository.save(details);
 			return bookingDetailsRepository.save(bookingDetails).getBookingId().toString();
 
 		}
