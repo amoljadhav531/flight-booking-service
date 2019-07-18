@@ -1,5 +1,7 @@
 package com.hcl.bookmyflight.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,14 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "passenger_details")
-public class PassengerDetails {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "passengerId")
+public class PassengerDetails implements Serializable{
+
+	private static final long serialVersionUID = 4088343444884333897L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "passenger_id")
-	private int passengerId;
+	private Long passengerId;
 
 	@Column(name = "passenger_name")
 	private String passengerName;
@@ -31,11 +39,11 @@ public class PassengerDetails {
 	@JoinColumn(name = "booking_id")
 	private BookingDetails bookingDetails;
 
-	public int getPassengerId() {
+	public Long getPassengerId() {
 		return passengerId;
 	}
 
-	public void setPassengerId(int passengerId) {
+	public void setPassengerId(Long passengerId) {
 		this.passengerId = passengerId;
 	}
 

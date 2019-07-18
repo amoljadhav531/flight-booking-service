@@ -1,5 +1,6 @@
 package com.hcl.bookmyflight.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,8 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
-public class User {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "userId")
+public class User implements Serializable{
+
+	private static final long serialVersionUID = -1309879943918759004L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

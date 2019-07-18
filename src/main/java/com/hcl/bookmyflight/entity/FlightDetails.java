@@ -1,5 +1,6 @@
 package com.hcl.bookmyflight.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -9,9 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "flight_details")
-public class FlightDetails {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "flightId")
+public class FlightDetails implements Serializable {
+
+	private static final long serialVersionUID = -3577487639395886681L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,16 +31,19 @@ public class FlightDetails {
 
 	private LocalDate date;
 
-	@Column(name= "departure_time")
+	@Column(name = "departure_time")
 	private String departureTime;
 
-	@Column(name= "arrival_time")
+	@Column(name = "arrival_time")
 	private String arrivalTime;
 
-	@Column(name= "time_duration")
+	@Column(name = "time_duration")
 	private String timeDuration;
 
 	private double price;
+
+	@Column(name = "avalaible_seats")
+	private int avalaibleSeats;
 
 	public Long getFlightId() {
 		return flightId;
@@ -97,6 +107,14 @@ public class FlightDetails {
 
 	public void setTimeDuration(String timeDuration) {
 		this.timeDuration = timeDuration;
+	}
+
+	public int getAvalaibleSeats() {
+		return avalaibleSeats;
+	}
+
+	public void setAvalaibleSeats(int avalaibleSeats) {
+		this.avalaibleSeats = avalaibleSeats;
 	}
 
 }
