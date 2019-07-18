@@ -14,6 +14,12 @@ public class FlightDetailsDTO {
 	Double price;
 	String sortParam;
 	
+	public String getTimeDuration() {
+		return timeDuration;
+	}
+	public void setTimeDuration(String timeDuration) {
+		this.timeDuration = timeDuration;
+	}
 	public Long getFlight_id() {
 		return flight_id;
 	}
