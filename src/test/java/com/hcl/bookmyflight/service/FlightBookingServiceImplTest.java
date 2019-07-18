@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -80,10 +79,19 @@ public class FlightBookingServiceImplTest {
 		when(userRepository.findById(bookingDetailsDto.getBookedBy())).thenReturn(Optional.empty());
 		flightBookingServiceImpl.bookFlight(bookingDetailsDto);
 	}
-	
+
 	@Test(expected = BookMyFlightException.class)
 	public void testBookFlightWhenInvalidFlightDetail() throws BookMyFlightException {
 		when(flightDetailsRepository.findById(bookingDetailsDto.getFlightId())).thenReturn(Optional.empty());
+		flightBookingServiceImpl.bookFlight(bookingDetailsDto);
+	}
+
+	@Test(expected = BookMyFlightException.class)
+	public void testBookFlightWhenSeatsNotAvailable() throws BookMyFlightException {
+		FlightDetails details = new FlightDetails();
+		details.setAvalaibleSeats(0);
+		when(flightDetailsRepository.findById(bookingDetailsDto.getFlightId())).thenReturn(Optional.of(details));
+		when(userRepository.findById(bookingDetailsDto.getBookedBy())).thenReturn(userOptional);
 		flightBookingServiceImpl.bookFlight(bookingDetailsDto);
 	}
 
