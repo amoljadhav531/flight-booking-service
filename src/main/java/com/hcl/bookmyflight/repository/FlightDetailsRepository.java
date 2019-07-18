@@ -1,5 +1,9 @@
 package com.hcl.bookmyflight.repository;
 
-public class FlightDetailsRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.hcl.bookmyflight.entity.FlightDetails;
+
+public interface FlightDetailsRepository extends JpaRepository<FlightDetails, Long> {
 
 }

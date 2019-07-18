@@ -1,16 +1,19 @@
 package com.hcl.bookmyflight.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hcl.bookmyflight.dto.LoginDto;
 import com.hcl.bookmyflight.entity.User;
+import com.hcl.bookmyflight.repository.UserRepository;
 
 public class LoginServiceImpl implements LoginServiceInterface {
 
+	@Autowired
+	private UserRepository userRepository;
+
 	@Override
 	public User loginUser(LoginDto loginDto) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findByUserNameAndPassword(loginDto.getUserName(), loginDto.getPassword());
 	}
 
-	
-	
 }
