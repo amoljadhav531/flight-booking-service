@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,7 +50,6 @@ public class FlightController {
 	public ResponseEntity<List<FlightDetails>> searchFlight(@RequestParam String source,
 			@RequestParam String destination, @RequestParam String sortparam, @RequestParam String date) {
 		LocalDate localDate = LocalDate.parse(date);
-		@DateTimeFormat(pattern = "yyyy-dd-MM") LocalDate localDate1;
 		return new ResponseEntity<>(searchFlightService.searchFlight(source, destination, sortparam, localDate),
 				HttpStatus.OK);
 	}
