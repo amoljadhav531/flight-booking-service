@@ -41,7 +41,6 @@ public class LoginServiceImpl implements LoginService {
 			return responseForSuperAdmin(user);
 		}	
 		return unauthorizedUser();
-		// return ;
 	}
 
 	private List<String> responseForFlightUser(User user) {
