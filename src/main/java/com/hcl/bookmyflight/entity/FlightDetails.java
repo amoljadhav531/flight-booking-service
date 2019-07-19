@@ -45,6 +45,8 @@ public class FlightDetails implements Serializable {
 	@Column(name = "avalaible_seats")
 	private int avalaibleSeats;
 
+	private String permission;
+
 	public Long getFlightId() {
 		return flightId;
 	}
@@ -117,13 +119,20 @@ public class FlightDetails implements Serializable {
 		this.avalaibleSeats = avalaibleSeats;
 	}
 
+	public String getPermission() {
+		return permission;
+	}
+
+	public void setPermission(String permission) {
+		this.permission = permission;
+	}
+
 	@Override
 	public String toString() {
 		return "FlightDetails [flightId=" + flightId + ", source=" + source + ", destination=" + destination + ", date="
 				+ date + ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", timeDuration="
-				+ timeDuration + ", price=" + price + ", avalaibleSeats=" + avalaibleSeats + "]";
+				+ timeDuration + ", price=" + price + ", avalaibleSeats=" + avalaibleSeats + ", permission="
+				+ permission + "]";
 	}
-	
-	
 
 }
