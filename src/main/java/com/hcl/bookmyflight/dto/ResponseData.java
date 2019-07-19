@@ -17,6 +17,6 @@ public class ResponseData implements Serializable {
 
 	private String message;
 	private HttpStatus httpStatus;
-	private Object data;
+	private transient Object data;
 
 }

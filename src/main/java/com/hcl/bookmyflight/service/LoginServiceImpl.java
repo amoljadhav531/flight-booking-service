@@ -15,6 +15,22 @@ import com.hcl.bookmyflight.repository.UserRepository;
 @Service
 public class LoginServiceImpl implements LoginService {
 
+	private static final String BOOK_FLIGHT = "2. Book flight";
+
+	private static final String CONSTANT = "Hi ";
+
+	private static final String APPROVE_REJECT_FLIGHT = "4. Approve/Reject Flight";
+
+	private static final String ADD_NEW_FLIGHT = "3. Add new Flight";
+
+	private static final String BOOK_A_FLIGHT = "2. Book a flight";
+
+	private static final String SEARCH_FLIGHT = "1. Search Flight";
+
+	private static final String ACCESS_FEATURES = "You can Access following features";
+
+	public static final String ACCESS_LEVEL_CONSTANT = "Your Access Level is :";
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -47,44 +63,44 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	private List<String> responseForFlightUser(User user) {
-		List<String> list = new ArrayList<String>();
-		list.add("Hi " + user.getUserName());
-		list.add("Your Access Level is :" + user.getRole());
-		list.add("You can Access following features");
-		list.add("1. Search Flight");
-		list.add("2. Book flight");
+		List<String> list = new ArrayList<>();
+		list.add(CONSTANT + user.getUserName());
+		list.add(ACCESS_LEVEL_CONSTANT + user.getRole());
+		list.add(ACCESS_FEATURES);
+		list.add(SEARCH_FLIGHT);
+		list.add(BOOK_FLIGHT);
 
 		return list;
 	}
 
 	private List<String> responseForFlightAdmin(User user) {
-		List<String> list = new ArrayList<String>();
-		list.add("Hi " + user.getUserName());
-		list.add("Your Access Level is :" + user.getRole());
-		list.add("You can Access following features");
-		list.add("1. Search Flight");
-		list.add("2. Book a flight");
-		list.add("3. Add new Flight");
+		List<String> list = new ArrayList<>();
+		list.add(CONSTANT + user.getUserName());
+		list.add(ACCESS_LEVEL_CONSTANT + user.getRole());
+		list.add(ACCESS_FEATURES);
+		list.add(SEARCH_FLIGHT);
+		list.add(BOOK_A_FLIGHT);
+		list.add(ADD_NEW_FLIGHT);
 
 		return list;
 	}
 
 	private List<String> responseForSuperAdmin(User user) {
-		List<String> list = new ArrayList<String>();
-		list.add("Hi " + user.getUserName());
-		list.add("Your Access Level is :" + user.getRole());
-		list.add("You can Access following features");
-		list.add("1. Search Flight");
-		list.add("2. Book a flight");
-		list.add("3. Add new Flight");
-		list.add("4. Approve/Reject Flight");
+		List<String> list = new ArrayList<>();
+		list.add(CONSTANT + user.getUserName());
+		list.add(ACCESS_LEVEL_CONSTANT + user.getRole());
+		list.add(ACCESS_FEATURES);
+		list.add(SEARCH_FLIGHT);
+		list.add(BOOK_A_FLIGHT);
+		list.add(ADD_NEW_FLIGHT);
+		list.add(APPROVE_REJECT_FLIGHT);
 		list.add("Following flights are waiting for your approval. Please approve");
 
 		return list;
 	}
 
 	private List<String> unauthorizedUser() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add("Sorry You are not an authorized user for BookMyFlights");
 		return list;
 	}
