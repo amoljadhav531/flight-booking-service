@@ -25,11 +25,14 @@ public class LoginServiceImpl implements LoginService {
 	public List<String> loginUser(LoginDto loginDto) {
 
 		User user = userRepository.findByUserNameAndPassword(loginDto.getUserName(), loginDto.getPassword());
-		if (user != null && user.getRole().equalsIgnoreCase("flightuser")) {
+		if(null == user) {
+			return unauthorizedUser();
+		}
+		if (null != user.getRole() && user.getRole().equalsIgnoreCase("flightuser")) {
 			return responseForFlightUser(user);
-		} else if (user != null && user.getRole().equalsIgnoreCase("flightadmin")) {
+		} else if (null != user.getRole()  && user.getRole().equalsIgnoreCase("flightadmin")) {
 			return responseForFlightAdmin(user);
-		} else if (user != null && user.getRole().equalsIgnoreCase("superadmin")) {
+		} else if (null != user.getRole() && user.getRole().equalsIgnoreCase("superadmin")) {
 			List<FlightDetails> flightDetails = flightDetailsRepository.findByPermission("PERMISSION_REQUIRED");
 			if(!flightDetails.isEmpty()) {
 				List<String> list  = responseForSuperAdmin(user);

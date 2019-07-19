@@ -12,13 +12,18 @@ import com.hcl.bookmyflight.dto.FlightDetailsDTO;
 import com.hcl.bookmyflight.dto.FlightPermission;
 import com.hcl.bookmyflight.dto.ResponseData;
 import com.hcl.bookmyflight.entity.FlightDetails;
+import com.hcl.bookmyflight.entity.User;
 import com.hcl.bookmyflight.repository.FlightDetailsRepository;
+import com.hcl.bookmyflight.repository.UserRepository;
 
 @Service
 public class FlightServiceImpl implements FlightService {
 
 	@Autowired
 	private FlightDetailsRepository flightDetailsRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	public FlightDetails addFlight(FlightDetailsDTO flightDetailsDTO) {
 
@@ -36,7 +41,7 @@ public class FlightServiceImpl implements FlightService {
 		Optional<FlightDetails> flightDetail = flightDetailsRepository.findById(permission.getFlightId());
 		if (flightDetail.isPresent()) {
 			FlightDetails flightDetails = flightDetail.get();
-			if(flightDetails.getPermission().equals("APPROVED")) {
+			if (flightDetails.getPermission().equals("APPROVED")) {
 				response.setMessage("Request is already approved");
 				response.setHttpStatus(HttpStatus.BAD_REQUEST);
 				response.setData(flightDetails);
@@ -62,6 +67,15 @@ public class FlightServiceImpl implements FlightService {
 		}
 
 		return response;
+	}
+
+	@Override
+	public User getAllPassengerDetails(int userId) {
+		Optional<User> user = userRepository.findById(userId);
+		if (user.isPresent()) {
+			return user.get();
+		}
+		return null;
 	}
 
 }
