@@ -2,9 +2,13 @@ package com.hcl.bookmyflight.service;
 
 import java.util.Optional;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.hcl.bookmyflight.dto.FlightDetailsDto;
@@ -14,25 +18,40 @@ import com.hcl.bookmyflight.entity.FlightDetails;
 import com.hcl.bookmyflight.entity.User;
 import com.hcl.bookmyflight.repository.FlightDetailsRepository;
 import com.hcl.bookmyflight.repository.UserRepository;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 @Service
 public class FlightServiceImpl implements FlightService {
 
 	@Autowired
 	private FlightDetailsRepository flightDetailsRepository;
-
+	
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private JavaMailSender sender;
+
+	private final static String ACCOUNT_SID = "ACf73ecdd409fb";
+	private final static String AUTH_ID = "d099b8077232a1";
+
+	static {
+		Twilio.init(ACCOUNT_SID, AUTH_ID);
+	}
 
 	public FlightDetails addFlight(FlightDetailsDto flightDetailsDTO) {
 
 		FlightDetails flightDetails = new FlightDetails();
 		BeanUtils.copyProperties(flightDetailsDTO, flightDetails);
 		flightDetails.setPermission("PERMISSION_REQUIRED");
-
-		return flightDetailsRepository.save(flightDetails);
+		flightDetails = flightDetailsRepository.save(flightDetails);
+		sendMailAndSMS(flightDetails.getFlightId());
+		return flightDetails;
 	}
 
+	@Override
 	public ResponseData grantFlightPermissions(FlightPermissionDto permission) {
 		ResponseData response = new ResponseData();
 		response.setHttpStatus(HttpStatus.BAD_REQUEST);
@@ -77,4 +96,26 @@ public class FlightServiceImpl implements FlightService {
 		return null;
 	}
 
+	private boolean sendMailAndSMS(long flightId) {
+		try {
+
+			String msg = "Hi Approver, Approval is pending for flight Id " + flightId;
+			User user = userRepository.findById(101).get();
+
+			MimeMessage message = sender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message);
+
+			helper.setTo(user.getEmailId());
+			helper.setText(msg);
+			helper.setSubject("Invitation for Flight Approval");
+			sender.send(message);
+
+			Message.creator(new PhoneNumber("+91" + user.getMobileNo()), new PhoneNumber("FROM Number"), msg).create();
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+
+		return true;
+	}
 }
