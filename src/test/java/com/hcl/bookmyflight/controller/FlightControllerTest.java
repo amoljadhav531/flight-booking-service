@@ -16,7 +16,7 @@ import com.hcl.bookmyflight.exception.BookMyFlightException;
 import com.hcl.bookmyflight.service.FlightBookingService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class FlightBookingControllerTest {
+public class FlightControllerTest {
 
 	@Mock
 	private FlightBookingService flightBookingService;

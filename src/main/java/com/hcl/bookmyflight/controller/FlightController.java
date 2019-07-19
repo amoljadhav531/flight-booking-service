@@ -38,7 +38,7 @@ public class FlightController {
 
 
 	@PostMapping("/add")
-	public ResponseEntity<?> addFlight(@RequestBody FlightDetailsDTO flightDetailsDTO) {
+	public ResponseEntity<Object> addFlight(@RequestBody FlightDetailsDTO flightDetailsDTO) {
 
 		FlightDetails flightDetails = flightServiceImpl.addFlight(flightDetailsDTO);
 
@@ -55,18 +55,18 @@ public class FlightController {
 	}
 	
 	@PutMapping("/grant/permission")
-	public ResponseEntity<?> grantFlightPermissions(FlightPermission permission) {
+	public ResponseEntity<Object> grantFlightPermissions(FlightPermission permission) {
 		ResponseData response = flightServiceImpl.grantFlightPermissions(permission);
 		return new ResponseEntity<>(response, response.getHttpStatus());
 	}
 	
 	@PostMapping("/book")
-	public ResponseEntity<?> bookFlight(@RequestBody BookingDetailsDto bookingDetailsDto) {
+	public ResponseEntity<Object> bookFlight(@RequestBody BookingDetailsDto bookingDetailsDto) {
 
 		try {
-			return new ResponseEntity<String>(flightBookingService.bookFlight(bookingDetailsDto), HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(flightBookingService.bookFlight(bookingDetailsDto), HttpStatus.ACCEPTED);
 		} catch (BookMyFlightException e) {
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 

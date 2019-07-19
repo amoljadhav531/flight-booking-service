@@ -26,12 +26,12 @@ public class UserController {
 	private FlightServiceImpl flightServiceImpl;
 
 	@PostMapping("/login")
-	public ResponseEntity<?> LoginUser(@RequestBody LoginDto logindto) {
-		return new ResponseEntity<List<String>>(loginserviceimpl.loginUser(logindto), HttpStatus.OK);
+	public ResponseEntity<List<String>> loginUser(@RequestBody LoginDto logindto) {
+		return new ResponseEntity<>(loginserviceimpl.loginUser(logindto), HttpStatus.OK);
 	}
 
 	@GetMapping("/pasttravels")
-	public ResponseEntity<?> getAllPassengerDetails(@RequestParam(value = "userId") Integer userId) {
+	public ResponseEntity<Object> getAllPassengerDetails(@RequestParam(value = "userId") Integer userId) {
 
 		User user = flightServiceImpl.getAllPassengerDetails(userId);
 		if (user != null) {
