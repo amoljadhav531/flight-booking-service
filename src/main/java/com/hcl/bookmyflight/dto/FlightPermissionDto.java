@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class FlightPermission {
+public class FlightPermissionDto {
 
 	@NotNull
 	private long flightId;

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.bookmyflight.dto.BookingDetailsDto;
-import com.hcl.bookmyflight.dto.FlightDetailsDTO;
-import com.hcl.bookmyflight.dto.FlightPermission;
+import com.hcl.bookmyflight.dto.FlightDetailsDto;
+import com.hcl.bookmyflight.dto.FlightPermissionDto;
 import com.hcl.bookmyflight.dto.ResponseData;
 import com.hcl.bookmyflight.entity.FlightDetails;
 import com.hcl.bookmyflight.exception.BookMyFlightException;
@@ -38,7 +38,7 @@ public class FlightController {
 
 
 	@PostMapping("/add")
-	public ResponseEntity<Object> addFlight(@RequestBody FlightDetailsDTO flightDetailsDTO) {
+	public ResponseEntity<Object> addFlight(@RequestBody FlightDetailsDto flightDetailsDTO) {
 
 		FlightDetails flightDetails = flightServiceImpl.addFlight(flightDetailsDTO);
 
@@ -55,7 +55,7 @@ public class FlightController {
 	}
 	
 	@PutMapping("/grant/permission")
-	public ResponseEntity<Object> grantFlightPermissions(FlightPermission permission) {
+	public ResponseEntity<Object> grantFlightPermissions(FlightPermissionDto permission) {
 		ResponseData response = flightServiceImpl.grantFlightPermissions(permission);
 		return new ResponseEntity<>(response, response.getHttpStatus());
 	}

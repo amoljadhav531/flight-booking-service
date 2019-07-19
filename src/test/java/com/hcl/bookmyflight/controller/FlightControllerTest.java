@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.bookmyflight.dto.BookingDetailsDto;
+import com.hcl.bookmyflight.dto.FlightDetailsDto;
 import com.hcl.bookmyflight.exception.BookMyFlightException;
 import com.hcl.bookmyflight.service.FlightBookingService;
 
@@ -25,10 +27,12 @@ public class FlightControllerTest {
 	private FlightController fligthBookingController;
 
 	private BookingDetailsDto bookingDto;
+	
+	private FlightDetailsDto flightDetailsDTO;
 
 	@Before
 	public void setUp() {
-
+		flightDetailsDTO = new FlightDetailsDto();
 	}
 
 	@Test
@@ -41,5 +45,10 @@ public class FlightControllerTest {
 	public void testBookFlightException() throws BookMyFlightException {
 		when(flightBookingService.bookFlight(bookingDto)).thenThrow(new BookMyFlightException("Exception"));
 		assertNotNull(fligthBookingController.bookFlight(bookingDto));
+	}
+	
+	@Ignore
+	public void testAddFlight() {
+		fligthBookingController.addFlight(flightDetailsDTO);
 	}
 }

@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.hcl.bookmyflight.dto.FlightDetailsDTO;
+import com.hcl.bookmyflight.dto.FlightDetailsDto;
 import com.hcl.bookmyflight.entity.FlightDetails;
 import com.hcl.bookmyflight.exception.ResourceNotFoundException;
 import com.hcl.bookmyflight.repository.FlightDetailsRepository;
@@ -25,8 +25,8 @@ import com.hcl.bookmyflight.repository.FlightDetailsRepository;
 @SpringBootTest
 public class SearchFlightServiceTest {
 
-	FlightDetailsDTO searchFlightDTOForExcpetion;
-	FlightDetailsDTO searchFlightWrongSortByException;
+	FlightDetailsDto searchFlightDTOForExcpetion;
+	FlightDetailsDto searchFlightWrongSortByException;
 	String destination, source;
 	LocalDate date;
 	FlightDetails searchFlight1;
