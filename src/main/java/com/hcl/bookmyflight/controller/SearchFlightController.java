@@ -22,7 +22,7 @@ public class SearchFlightController {
 	@Autowired
 	private SearchFlightService searchFlightService;
 	
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<List<FlightDetails>> searchFlight(@RequestBody FlightDetailsDTO searchFlightDTO) {
 		return new ResponseEntity<>(searchFlightService.searchFlight(searchFlightDTO) ,HttpStatus.OK);
 	}

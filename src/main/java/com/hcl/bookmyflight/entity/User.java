@@ -1,6 +1,7 @@
 package com.hcl.bookmyflight.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -36,7 +37,7 @@ public class User implements Serializable{
 	private String emailId;
 
 	@OneToMany(mappedBy = "bookedBy")
-	private List<BookingDetails> bookingDetails;
+	private List<BookingDetails> bookingDetails = new ArrayList<>();
 
 	public int getUserId() {
 		return userId;

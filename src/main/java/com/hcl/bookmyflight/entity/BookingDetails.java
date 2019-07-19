@@ -2,6 +2,7 @@ package com.hcl.bookmyflight.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -46,7 +47,7 @@ public class BookingDetails implements Serializable{
 	private User bookedBy;
 
 	@OneToMany(mappedBy = "bookingDetails", cascade = CascadeType.ALL, orphanRemoval =true)
-	private List<PassengerDetails> passengerDetails;
+	private List<PassengerDetails> passengerDetails = new ArrayList<>();
 
 	public Long getBookingId() {
 		return bookingId;
