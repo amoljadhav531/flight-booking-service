@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "userId")
-public class User implements Serializable{
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = -1309879943918759004L;
 
@@ -37,6 +37,16 @@ public class User implements Serializable{
 
 	@OneToMany(mappedBy = "bookedBy")
 	private List<BookingDetails> bookingDetails;
+
+	private String role;
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -89,9 +99,7 @@ public class User implements Serializable{
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", mobileNo=" + mobileNo
-				+ ", emailId=" + emailId + ", bookingDetails=" + bookingDetails + "]";
+				+ ", emailId=" + emailId + ", bookingDetails=" + bookingDetails + ", role=" + role + "]";
 	}
-	
-	
 
 }
