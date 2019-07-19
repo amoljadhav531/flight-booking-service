@@ -14,10 +14,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "passenger_details")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "passengerId")
-public class PassengerDetails implements Serializable{
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "passengerId")
+public class PassengerDetails implements Serializable {
 
 	private static final long serialVersionUID = 4088343444884333897L;
 
@@ -39,52 +42,4 @@ public class PassengerDetails implements Serializable{
 	@JoinColumn(name = "booking_id")
 	private BookingDetails bookingDetails;
 
-	public Long getPassengerId() {
-		return passengerId;
-	}
-
-	public void setPassengerId(Long passengerId) {
-		this.passengerId = passengerId;
-	}
-
-	public String getPassengerName() {
-		return passengerName;
-	}
-
-	public void setPassengerName(String passengerName) {
-		this.passengerName = passengerName;
-	}
-
-	public int getPassengerAge() {
-		return passengerAge;
-	}
-
-	public void setPassengerAge(int passengerAge) {
-		this.passengerAge = passengerAge;
-	}
-
-	public String getPassengerGender() {
-		return passengerGender;
-	}
-
-	public void setPassengerGender(String passengerGender) {
-		this.passengerGender = passengerGender;
-	}
-
-	public BookingDetails getBookingDetails() {
-		return bookingDetails;
-	}
-
-	public void setBookingDetails(BookingDetails bookingDetails) {
-		this.bookingDetails = bookingDetails;
-	}
-
-	@Override
-	public String toString() {
-		return "PassengerDetails [passengerId=" + passengerId + ", passengerName=" + passengerName + ", passengerAge="
-				+ passengerAge + ", passengerGender=" + passengerGender + ", bookingDetails=" + bookingDetails + "]";
-	}
-	
-	
-	
 }
