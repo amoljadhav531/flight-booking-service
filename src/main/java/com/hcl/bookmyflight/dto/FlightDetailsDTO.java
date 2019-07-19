@@ -7,20 +7,34 @@ import javax.validation.constraints.NotNull;
 
 public class FlightDetailsDTO {
 
-	@NotNull
 	@NotBlank
+	@NotNull
 	private String source;
-	
-	@NotNull
+
 	@NotBlank
+	@NotNull
 	private String destination;
-	
+
 	@NotNull
 	private LocalDate date;
-	
-	@NotNull
+
 	@NotBlank
-	private String sortParam;
+	@NotNull
+	private String departureTime;
+
+	@NotBlank
+	@NotNull
+	private String arrivalTime;
+
+	@NotBlank
+	@NotNull
+	private String timeDuration;
+
+	@NotNull
+	private double price;
+
+	@NotNull
+	private int avalaibleSeats;
 
 	public String getSource() {
 		return source;
@@ -46,12 +60,44 @@ public class FlightDetailsDTO {
 		this.date = date;
 	}
 
-	public String getSortParam() {
-		return sortParam;
+	public String getDepartureTime() {
+		return departureTime;
 	}
 
-	public void setSortParam(String sortParam) {
-		this.sortParam = sortParam;
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
+
+	public String getArrivalTime() {
+		return arrivalTime;
+	}
+
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	public String getTimeDuration() {
+		return timeDuration;
+	}
+
+	public void setTimeDuration(String timeDuration) {
+		this.timeDuration = timeDuration;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getAvalaibleSeats() {
+		return avalaibleSeats;
+	}
+
+	public void setAvalaibleSeats(int avalaibleSeats) {
+		this.avalaibleSeats = avalaibleSeats;
 	}
 
 }
