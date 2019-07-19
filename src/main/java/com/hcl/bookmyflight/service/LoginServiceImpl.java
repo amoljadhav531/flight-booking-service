@@ -52,9 +52,7 @@ public class LoginServiceImpl implements LoginService {
 			List<FlightDetails> flightDetails = flightDetailsRepository.findByPermission("PERMISSION_REQUIRED");
 			if(!flightDetails.isEmpty()) {
 				List<String> list  = responseForSuperAdmin(user);
-				flightDetails.stream().forEach(i -> {
-					list.add(i.getFlightId().toString());
-				});
+				flightDetails.stream().forEach(i -> list.add(i.getFlightId().toString()));
 				return list;
 			}
 			return responseForSuperAdmin(user);
