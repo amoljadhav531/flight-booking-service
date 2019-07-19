@@ -76,7 +76,6 @@ public class LoginServiceImpl implements LoginService {
 		list.add("2. Book a flight");
 		list.add("3. Add new Flight");
 		list.add("4. Approve/Reject Flight");
-		list.add("");
 		list.add("Following flights are waiting for your approval. Please approve");
 
 		return list;
