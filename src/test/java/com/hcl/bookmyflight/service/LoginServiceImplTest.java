@@ -35,9 +35,9 @@ public class LoginServiceImplTest {
 
 	@InjectMocks
 	LoginServiceImpl loginserviceimpl;
-	
+
 	private FlightDetails flightDetails;
-	
+
 	private List<FlightDetails> flightDetailsList;
 
 	@Before
@@ -58,6 +58,10 @@ public class LoginServiceImplTest {
 		dto = new LoginDto();
 		dto.setPassword("pass");
 		dto.setUserName("username");
+
+		flightDetailsList = new ArrayList<FlightDetails>();
+		flightDetails = new FlightDetails();
+		flightDetails.setFlightId(Long.valueOf(1123));
 
 	}
 
@@ -84,9 +88,35 @@ public class LoginServiceImplTest {
 	@Test
 	public void testLoginUserWhenRoleIsSuperAdmin() {
 		user.setRole("superadmin");
+		flightDetailsList.add(flightDetails);
 		Mockito.when(userrepository.findByUserNameAndPassword("username", "pass")).thenReturn(user);
-		//Mockito.when(flightDetailsRepository.findByPermission("PERMISSION_REQUIRED")).thenReturn(value);
-		
+		Mockito.when(flightDetailsRepository.findByPermission("PERMISSION_REQUIRED")).thenReturn(flightDetailsList);
+
+		assertTrue(loginserviceimpl.loginUser(dto).size() > 0);
+	}
+
+	@Test
+	public void testLoginUserWhenRoleIsSuperAdminWithEmptyList() {
+		user.setRole("superadmin");
+		Mockito.when(userrepository.findByUserNameAndPassword("username", "pass")).thenReturn(user);
+		Mockito.when(flightDetailsRepository.findByPermission("PERMISSION_REQUIRED")).thenReturn(flightDetailsList);
+
+		assertTrue(loginserviceimpl.loginUser(dto).size() > 0);
+	}
+
+	@Test
+	public void testLoginUserWhenRoleIsSuperAdminWithNull() {
+		user.setRole("superadmin");
+		Mockito.when(userrepository.findByUserNameAndPassword("username", "pass")).thenReturn(null);
+		assertTrue(loginserviceimpl.loginUser(dto).size() > 0);
+	}
+	
+
+	@Test
+	public void testLoginUserWhenRoleIsSuperAdminWithRoleNull() {
+		user.setRole("superadmin");
+		user.setRole(null);
+		Mockito.when(userrepository.findByUserNameAndPassword("username", "pass")).thenReturn(user);
 		assertTrue(loginserviceimpl.loginUser(dto).size() > 0);
 	}
 

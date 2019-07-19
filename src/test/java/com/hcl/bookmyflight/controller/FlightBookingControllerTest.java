@@ -22,7 +22,7 @@ public class FlightBookingControllerTest {
 	private FlightBookingService flightBookingService;
 
 	@InjectMocks
-	private FlightBookingController fligthBookingController;
+	private FlightController fligthBookingController;
 
 	private BookingDetailsDto bookingDto;
 
