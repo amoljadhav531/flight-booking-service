@@ -1,5 +1,7 @@
 package com.hcl.bookmyflight.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,23 +31,34 @@ public class FlightServiceImpl implements FlightService {
 
 	public ResponseData grantFlightPermissions(FlightPermission permission) {
 		ResponseData response = new ResponseData();
-		FlightDetails flightDetails = flightDetailsRepository.getOne(permission.getFlightId());
-		if(ObjectUtils.isEmpty(flightDetails)) {
+		response.setHttpStatus(HttpStatus.BAD_REQUEST);
+		response.setMessage("Please use proper spelling for Approve and Reject");
+		Optional<FlightDetails> flightDetail = flightDetailsRepository.findById(permission.getFlightId());
+		if (flightDetail.isPresent()) {
+			FlightDetails flightDetails = flightDetail.get();
+			if(flightDetails.getPermission().equals("APPROVED")) {
+				response.setMessage("Request is already approved");
+				response.setHttpStatus(HttpStatus.BAD_REQUEST);
+				response.setData(flightDetails);
+				return response;
+			}
+			if (permission.getPermission().equalsIgnoreCase("APPROVE")) {
+				flightDetails.setPermission("APPROVED");
+				flightDetailsRepository.save(flightDetails);
+				response.setMessage("Permission Aproved Successfully");
+				response.setHttpStatus(HttpStatus.OK);
+				response.setData(flightDetails);
+
+			} else if (permission.getPermission().equalsIgnoreCase("REJECT")) {
+				flightDetails.setPermission("REJECTED");
+				flightDetailsRepository.deleteById(permission.getFlightId());
+				response.setMessage("Permission Rejected Successfully");
+				response.setHttpStatus(HttpStatus.OK);
+				response.setData(flightDetails);
+			}
+		} else {
 			response.setMessage("Flight Id is incorrect");
 			response.setHttpStatus(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		if (permission.getPermission().equalsIgnoreCase("APPROVED")) {
-			flightDetails.setPermission("APPROVED");
-			response.setMessage("Permission Aproved Successfully");
-			response.setHttpStatus(HttpStatus.OK);
-			response.setData(flightDetails);
-		} else {
-			flightDetails.setPermission("REJECTED");
-			flightDetailsRepository.deleteById(permission.getFlightId());
-			response.setMessage("Permission Rejected Successfully");
-			response.setHttpStatus(HttpStatus.OK);
-			response.setData(flightDetails);
 		}
 
 		return response;

@@ -11,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "flight_details")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "flightId")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class FlightDetails implements Serializable {
 
 	private static final long serialVersionUID = -3577487639395886681L;
