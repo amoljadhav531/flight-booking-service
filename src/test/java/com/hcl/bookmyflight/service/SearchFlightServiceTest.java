@@ -82,7 +82,7 @@ public class SearchFlightServiceTest {
 		String sortParam = "price";
 		actualList.add(searchFlight1);
 		actualList.add(searchFlight2);
-		Mockito.when(flightDetailsRepository.findBySourceAndDestinationAndDateOrderByArrivalTimeAsc("Pune", "Delhi", new Date(2019-18-07).toLocalDate())).thenReturn(actualList);
+		Mockito.when(flightDetailsRepository.findBySourceAndDestinationAndDateAndPermissionOrderByPriceAsc("Pune", "Delhi", new Date(2019-18-07).toLocalDate(), "APPROVED")).thenReturn(actualList);
 		List<FlightDetails> actualList  = searchFlightService.searchFlight(source, destination, sortParam, date);
 		assertEquals(actualList, actualList);
 	}
@@ -92,7 +92,7 @@ public class SearchFlightServiceTest {
 		String sortParam = "timeDuration";
 		actualList.add(searchFlight1);
 		actualList.add(searchFlight2);
-		Mockito.when(flightDetailsRepository.findBySourceAndDestinationAndDateOrderByArrivalTimeAsc("Pune", "Delhi", new Date(2019-18-07).toLocalDate())).thenReturn(actualList);
+		Mockito.when(flightDetailsRepository.findBySourceAndDestinationAndDateAndPermissionOrderByTimeDurationAsc("Pune", "Delhi", new Date(2019-18-07).toLocalDate(), "APPROVED")).thenReturn(actualList);
 		List<FlightDetails> actualList  = searchFlightService.searchFlight(source, destination, sortParam, date);
 		assertEquals(actualList, actualList);
 	}
@@ -102,7 +102,7 @@ public class SearchFlightServiceTest {
 		String sortParam = "arrivalTime";
 		actualList.add(searchFlight1);
 		actualList.add(searchFlight2);
-		Mockito.when(flightDetailsRepository.findBySourceAndDestinationAndDateOrderByArrivalTimeAsc("Pune", "Delhi", new Date(2019-18-07).toLocalDate())).thenReturn(actualList);
+		Mockito.when(flightDetailsRepository.findBySourceAndDestinationAndDateAndPermissionOrderByArrivalTimeAsc("Pune", "Delhi", new Date(2019-18-07).toLocalDate(), "APPROVED")).thenReturn(actualList);
 		List<FlightDetails> actualList  = searchFlightService.searchFlight(source, destination, sortParam, date);
 		assertEquals(actualList, actualList);
 	}

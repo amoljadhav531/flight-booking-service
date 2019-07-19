@@ -11,8 +11,8 @@ public interface FlightDetailsRepository extends JpaRepository<FlightDetails, Lo
 
 	public List<FlightDetails> findBySourceAndDestinationAndDate(String source, String destination, LocalDate date);
 	
-	public List<FlightDetails> findBySourceAndDestinationAndDateOrderByPriceAsc(String source, String destination, LocalDate date);
-	public List<FlightDetails> findBySourceAndDestinationAndDateOrderByTimeDurationAsc(String source, String destination, LocalDate date);
-	public List<FlightDetails> findBySourceAndDestinationAndDateOrderByArrivalTimeAsc(String source, String destination, LocalDate date);
+	public List<FlightDetails> findBySourceAndDestinationAndDateAndPermissionOrderByPriceAsc(String source, String destination, LocalDate date, String permission);
+	public List<FlightDetails> findBySourceAndDestinationAndDateAndPermissionOrderByTimeDurationAsc(String source, String destination, LocalDate date, String permission);
+	public List<FlightDetails> findBySourceAndDestinationAndDateAndPermissionOrderByArrivalTimeAsc(String source, String destination, LocalDate date, String permission);
 	
 }
