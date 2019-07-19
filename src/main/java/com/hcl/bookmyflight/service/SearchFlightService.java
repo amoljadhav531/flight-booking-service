@@ -29,7 +29,7 @@ public class SearchFlightService {
 			return searchFlightRepository.findBySourceAndDestinationAndDateAndPermissionOrderByArrivalTimeAsc(source, destination, date, permission);
 		}
 		else {
-			throw new ResourceNotFoundException("Sort Parameter is not specified properly. Please specify out of these <price, timeDuration, arrivalTime>", "", sortparam);
+			throw new ResourceNotFoundException("Sort Parameter is not specified properly. Please specify out of these <price, timeDuration, arrivalTime>"+sortparam);
 		}
 	}
 
