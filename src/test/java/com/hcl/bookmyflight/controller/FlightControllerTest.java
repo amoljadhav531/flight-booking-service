@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hcl.bookmyflight.dto.BookingDetailsDto;
 import com.hcl.bookmyflight.dto.FlightDetailsDto;
+import com.hcl.bookmyflight.dto.FlightPermissionDto;
+import com.hcl.bookmyflight.dto.ResponseData;
 import com.hcl.bookmyflight.entity.FlightDetails;
 import com.hcl.bookmyflight.exception.BookMyFlightException;
 import com.hcl.bookmyflight.service.FlightBookingService;
@@ -73,4 +75,14 @@ public class FlightControllerTest {
 		assertNotNull(fligthBookingController.searchFlight("source", "destination", "sortparam", "2019-09-09"));
 
 	}
+	
+	/*
+	 * @Test public void testResponseData() {
+	 * when(flightServiceImpl.grantFlightPermissions(Mockito.any())) .thenReturn(new
+	 * ResponseData());
+	 * assertNotNull(fligthBookingController.grantFlightPermissions(new
+	 * FlightPermissionDto()));
+	 * 
+	 * }
+	 */
 }
