@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.hcl.bookmyflight.dto.FlightDetailsDTO;
-import com.hcl.bookmyflight.dto.FlightPermission;
+import com.hcl.bookmyflight.dto.FlightDetailsDto;
+import com.hcl.bookmyflight.dto.FlightPermissionDto;
 import com.hcl.bookmyflight.dto.ResponseData;
 import com.hcl.bookmyflight.entity.FlightDetails;
 import com.hcl.bookmyflight.entity.User;
@@ -24,7 +24,7 @@ public class FlightServiceImpl implements FlightService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public FlightDetails addFlight(FlightDetailsDTO flightDetailsDTO) {
+	public FlightDetails addFlight(FlightDetailsDto flightDetailsDTO) {
 
 		FlightDetails flightDetails = new FlightDetails();
 		BeanUtils.copyProperties(flightDetailsDTO, flightDetails);
@@ -33,7 +33,7 @@ public class FlightServiceImpl implements FlightService {
 		return flightDetailsRepository.save(flightDetails);
 	}
 
-	public ResponseData grantFlightPermissions(FlightPermission permission) {
+	public ResponseData grantFlightPermissions(FlightPermissionDto permission) {
 		ResponseData response = new ResponseData();
 		response.setHttpStatus(HttpStatus.BAD_REQUEST);
 		response.setMessage("Please use proper spelling for Approve and Reject");
