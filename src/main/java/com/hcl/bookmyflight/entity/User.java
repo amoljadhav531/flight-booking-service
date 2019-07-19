@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import lombok.Data;
+
+@Data
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
 public class User implements Serializable {
@@ -40,67 +43,5 @@ public class User implements Serializable {
 	private List<BookingDetails> bookingDetails = new ArrayList<>();
 
 	private String role;
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getMobileNo() {
-		return mobileNo;
-	}
-
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public List<BookingDetails> getBookingDetails() {
-		return bookingDetails;
-	}
-
-	public void setBookingDetails(List<BookingDetails> bookingDetails) {
-		this.bookingDetails = bookingDetails;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", mobileNo=" + mobileNo
-				+ ", emailId=" + emailId + ", bookingDetails=" + bookingDetails + ", role=" + role + "]";
-	}
 
 }

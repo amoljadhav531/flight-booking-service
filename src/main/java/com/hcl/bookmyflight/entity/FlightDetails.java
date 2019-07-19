@@ -11,11 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "flight_details")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "flightId")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class FlightDetails implements Serializable {
 
 	private static final long serialVersionUID = -3577487639395886681L;
@@ -46,93 +51,5 @@ public class FlightDetails implements Serializable {
 	private int avalaibleSeats;
 
 	private String permission;
-
-	public Long getFlightId() {
-		return flightId;
-	}
-
-	public void setFlightId(Long flightId) {
-		this.flightId = flightId;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	public String getDepartureTime() {
-		return departureTime;
-	}
-
-	public void setDepartureTime(String departureTime) {
-		this.departureTime = departureTime;
-	}
-
-	public String getArrivalTime() {
-		return arrivalTime;
-	}
-
-	public void setArrivalTime(String arrivalTime) {
-		this.arrivalTime = arrivalTime;
-	}
-
-	public String getTimeDuration() {
-		return timeDuration;
-	}
-
-	public void setTimeDuration(String timeDuration) {
-		this.timeDuration = timeDuration;
-	}
-
-	public int getAvalaibleSeats() {
-		return avalaibleSeats;
-	}
-
-	public void setAvalaibleSeats(int avalaibleSeats) {
-		this.avalaibleSeats = avalaibleSeats;
-	}
-
-	public String getPermission() {
-		return permission;
-	}
-
-	public void setPermission(String permission) {
-		this.permission = permission;
-	}
-
-	@Override
-	public String toString() {
-		return "FlightDetails [flightId=" + flightId + ", source=" + source + ", destination=" + destination + ", date="
-				+ date + ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", timeDuration="
-				+ timeDuration + ", price=" + price + ", avalaibleSeats=" + avalaibleSeats + ", permission="
-				+ permission + "]";
-	}
 
 }
